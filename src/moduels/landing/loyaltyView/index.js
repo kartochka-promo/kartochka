@@ -3,7 +3,8 @@ import "./index.scss"
 
 function LoyaltyView() {
   return (
-    <div className="loyalty-view">
+    <div className={"loyalty-view"}>
+      <h1>Почему программа лояльности:</h1>
       <div className={"line"}>
         <div className={"number"}>10%</div>
         <div className={"description"}>

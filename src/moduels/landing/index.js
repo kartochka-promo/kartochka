@@ -2,6 +2,7 @@ import React from 'react';
 import "./index.scss"
 import kartochka from "../../img/card.svg"
 import LoyaltyView from "./loyaltyView";
+import EmailView from "./emailView";
 
 function Landing() {
   return (
@@ -68,6 +69,7 @@ function Landing() {
         </div>
       </div>
       <LoyaltyView/>
+      <EmailView/>
     </div>
   );
 }
