@@ -1,0 +1,42 @@
+.loyalty-view{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  margin-bottom: 50px;
+  margin-top: 50px;
+
+  padding: 2%;
+  border-radius: 40px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  position: relative;
+
+  .line{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    max-width: 90%;
+    position: relative;
+    margin-left: 5%;
+
+    .percentage-bar{
+      height: 100px;
+    }
+
+    .number{
+      font-size: 10vw;
+      color: #FA9917;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    .description{
+      max-width: 70%;
+      font-size: 3vw;
+      margin-left: 2%;
+    }
+  }
+}

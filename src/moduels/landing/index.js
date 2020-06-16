@@ -1,6 +1,7 @@
 import React from 'react';
 import "./index.scss"
 import kartochka from "../../img/card.svg"
+import LoyaltyView from "./loyaltyView";
 
 function Landing() {
   return (
@@ -26,49 +27,47 @@ function Landing() {
         <h1>Как это работает:</h1>
         <div className={"flex-table"}>
           <div className={"column first"}>
-            <h2>
-              для клиента
-            </h2>
             <div className={"content"}>
-              <div className={"text-content"}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Mauris ultrices sodales velit a maximus.
-                Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                Aenean sed lorem blandit, malesuada sapien laoreet.
+              <div className={"title-container"}>
+                <h2 className={"title"}>
+                  Карточки в Apple Wallet и Google Pay
+                </h2>
+                <div className={"text-content"}>
+                  Электронные карты лояльности -- это удобная альтернатива пластиковым и бумажным картам. Они находятся у пользователя в стандартных приложениях Apple Wallet или Google Pay.
+                </div>
               </div>
               <img src={kartochka} className={"image card"}/>
             </div>
           </div>
           <div className={"column second"}>
-            <h2>
-              для вас
-            </h2>
             <div className={"content"}>
-              <div className={"text-content"}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Mauris ultrices sodales velit a maximus.
-                Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                Aenean sed lorem blandit, malesuada sapien laoreet.
+              <div className={"title-container"}>
+                <h2 className={"title"}>
+                  Для вас
+                </h2>
+                <div className={"text-content"}>
+                  Вы выбираете программу лояльности и оформление карточки, настраивая их специально для Вашего бизнеса, в нашем редакторе.
+                </div>
               </div>
               <img src={kartochka} className={"image card"}/>
             </div>
           </div>
           <div className={"column third"}>
-            <h2>
-              вообще
-            </h2>
-            <div className={"content"}>
-              <div className={"text-content"}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Mauris ultrices sodales velit a maximus.
-                Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                Aenean sed lorem blandit, malesuada sapien laoreet.
-              </div>
-              <img src={kartochka} className={"image card"}/>
+              <div className={"content"}>
+                <div className={"title-container"}>
+                  <h2 className={"title"}>
+                    Для клиентов
+                  </h2>
+                  <div className={"text-content"}>
+                    Ваш клиент сканирует QR-код с барной стойки или переходит по ссылке из социальной сети. После этого к нему в Apple Wallet или Google Pay добавляется карта вашего бизнеса.
+                  </div>
+                </div>
+                <img src={kartochka} className={"image card"}/>
             </div>
           </div>
         </div>
       </div>
+      <LoyaltyView/>
     </div>
   );
 }
