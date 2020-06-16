@@ -1,0 +1,19 @@
+.authorization {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.authorization__title {
+  margin: 0 auto;
+  justify-self: flex-start;
+}
+.authorization__title h1 {
+  margin: 0 auto;
+}
+.authorization__form {
+  justify-self: center;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=Authorization.css.map */

@@ -1,0 +1,18 @@
+.authorization{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  &__title{
+    margin: 0 auto;
+    justify-self: flex-start;
+    h1{
+      margin: 0 auto;
+    }
+  }
+
+  &__form{
+    justify-self: center;
+    margin: 0 auto;
+  }
+}
