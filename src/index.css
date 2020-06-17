@@ -1,13 +1,57 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900&display=swap);
+.action-button {
+  width: 128px;
+  height: 64px;
+  background-color: #1C768F;
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+}
+.action-button.stretch {
+  width: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.input {
+  border-bottom: 2px black;
 }
+
+.secondaryButton {
+  background-color: rgba(255, 255, 255, 0);
+  font-weight: normal;
+}
+
+@media only screen and (min-width: 700px) {
+  h1 {
+    font-size: 8vw;
+    margin-left: 10%;
+  }
+
+  .H1 {
+    font-size: 8vw;
+    margin-left: 10%;
+  }
+}
+@media only screen and (max-width: 700px) and (max-height: 1025px), (max-width: 1025px) and (min-height: 1025px) {
+  h1 {
+    font-size: 6vw;
+    width: 100%;
+    text-align: center;
+  }
+
+  .H1 {
+    font-size: 6vw;
+    width: 100%;
+    text-align: center;
+  }
+}
+div {
+  font-family: Montserrat, sans-serif;
+}
+
+button {
+  font-family: Montserrat, sans-serif;
+  background: none;
+  border: none;
+}
+
+/*# sourceMappingURL=index.css.map */

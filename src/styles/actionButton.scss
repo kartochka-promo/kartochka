@@ -3,7 +3,6 @@
 .action-button{
   width: 128px;
   height: 64px;
-
   background-color: $main-colour;
   color: white;
   font-weight: bold;
@@ -12,4 +11,5 @@
   &.stretch{
     width: 100%;
   }
+
 }

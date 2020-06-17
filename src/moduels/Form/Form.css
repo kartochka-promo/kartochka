@@ -5,16 +5,16 @@
   min-width: 300px;
   margin: 0 auto;
 }
-.auth-form__input-field {
+.auth-form .input-field {
   display: flex;
   flex-direction: column;
   margin: 15px 0;
 }
-.auth-form__input-field label {
+.auth-form .input-field label {
   margin: 5px 0;
   font-size: 1rem;
 }
-.auth-form__input-field input {
+.auth-form .input-field input {
   margin: 5px 0;
   -webkit-appearance: none;
   background: none;
@@ -43,7 +43,7 @@
   transition: background-color 0s ease-in-out;
   background-color: #FA9917;
 }
-.auth-form_label {
+.auth-form .label {
   cursor: pointer;
   margin: 0 auto;
 }
