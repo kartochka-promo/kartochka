@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import "./Form.scss"
-import Validator from "../Validator/Validator";
-import {useStore} from "react-redux";
+// import Validator from "../Validator/Validator";
+// import {useStore} from "react-redux";
 import Input from "../Input";
 
 function Form(props) {
@@ -10,19 +10,21 @@ function Form(props) {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [rePassword, setRePassword] = useState(null);
-  let isValidValues = {
-      name: false,
-      email:false,
-      password:false,
-  };
-  let isValid = isValidValues.name && isValidValues.email && isValidValues.password;
+
+  let isValid = false;
+  let isValidName = false;
+  let isValidEmail = false;
+  let isValidPassword = false;
+  let isValidRePassword = false;
 
   useEffect(() => {
-      isValidValues = {
-            name: name !== null,
-            email: email !== null,
-            password: password !== null && password === rePassword
-      };
+      isValid = props.type === 'reg'?
+          name !== null && email !== null  && password !== null && password === rePassword:
+          email !== null  && password !== null;
+      isValidName = name !== null;
+      isValidEmail= email !== null;
+      isValidRePassword = rePassword !== null;
+
   });
 
 
@@ -49,27 +51,25 @@ function Form(props) {
   return (
     <div className={"auth-form"}>
         <InputField hidden={props.type !== "reg"} text={"Имя"}>
-            <Input type ={"text"} onValidate={(val) => setName(val)} regexp={RegExp(
-                "^[0-9]+$")}/>
-            {/*{!isValidValues.name? <span>Пароль должен чето там</span>:null}*/}
+            <Input type= {"text"} onValidate={(val) => {setName(val)}} regexp={RegExp(
+                "^[_A-z0-9]*((-|\\s)*[_A-z0-9])*$")}
+                   patternmessage={"Имя должно..."}/>
         </InputField>
 
         <InputField text={"Почта"}>
-            <Input type ={"email"} onValidate={(val) => setEmail(val)} regexp={RegExp(
-                "[^\\>]*")}/>
-            {/*{!isValidValues.email? <span>Пароль должен чето там</span>:null}*/}
+            <Input type= {"text"} onValidate={(val) => setEmail(val)} regexp={RegExp(
+                "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])")}
+                   patternmessage={"Почта должна..."}/>
         </InputField>
 
         <InputField text={"Пароль"}>
-            <Input type ={"password"} onValidate={(val) => setPassword(val)} regexp={RegExp(
-                "[^\\>]*")}/>
-            {/*{!isValidValues.password? <span>Пароль должен чето там</span>:null}*/}
+            <Input type= {"password"} onValidate={(val) => setPassword(val)} regexp={RegExp(
+                "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")} patternmessage={"Пароль должен..."}/>
         </InputField>
 
         <InputField hidden={props.type !== "reg"} text={"Повторите пароль"}>
-            <Input type ={"password"} onValidate={(val) => setRePassword(val)} regexp={RegExp(
-                "[^\\>]*")}/>
-            {/*{!isValidValues.password? <span>Пароль должен чето там</span>:null}*/}
+            <Input type= {"password"} onValidate={(val) => setRePassword(val)} regexp={RegExp(
+                "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")} patternmessage={"Пароль должен..."}/>
         </InputField>
 
       <button className={"label"} onClick={props.setType}>
@@ -80,7 +80,7 @@ function Form(props) {
           if (isValid) {
             alert(`${name}, ${email}, ${password}`)
           } else{
-              console.log(isValidValues)
+              console.log('isValid',isValid, isValidName, isValidEmail, isValidPassword, isValidRePassword)
           }
         }}
         className={`auth-button${isValid ? '-active':''} `}>

@@ -9,6 +9,7 @@
   .input-field {
       display: flex;
       flex-direction: column;
+      margin: 5px 0;
       label{
         margin: 5px 0;
         font-size: 1rem;
@@ -52,6 +53,9 @@
       background-color: $secondary-colour;
     }
   }
+  span{
+    cursor: default;
+  }
 
   .label{
     cursor: pointer;
@@ -71,6 +75,7 @@
   height: 50px;
   font-size: 1rem;
   color: white;
+  cursor: pointer;
   &:hover {
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.25);
   }
