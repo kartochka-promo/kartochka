@@ -11,16 +11,23 @@ function Input(props) {
   });
 
   function onChange(ev) {
+    console.log('onChange')
     let newValue = ev.target.value;
     if(props.onValidate && props.regexp && props.regexp.test(String(newValue))){
+      console.log('0')
       if(!props.onChange){
+        console.log('1')
         props.onValidate(null);
+        setIsValid(props.regexp.test(String(newValue)));
+      } else{
+        console.log('1.1')
+        props.onChange(newValue);
         setIsValid(props.regexp.test(String(newValue)));
       }
     }
     if(props.onChange){
+      console.log('2')
       props.onChange(newValue);
-      console.log('onChange set ', props.regexp.test(String(newValue)))
       setIsValid(props.regexp.test(String(newValue)));
     }
   }
