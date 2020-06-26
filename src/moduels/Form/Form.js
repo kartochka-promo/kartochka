@@ -69,8 +69,10 @@ function Form(props) {
         </InputField>
 
         <InputField hidden={props.type !== "reg"} text={"Повторите пароль"}>
-            <Input type= {"password"} onValidate={(val) => setRePassword(val)} regexp={RegExp(
-                "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")} patternmessage={"Пароли должны совпадать"}/>
+            <Input type= {"password"}
+                   onValidate={(val) => {setRePassword(val)}}
+                   regexp={RegExp(`^(${password?password:'^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'})`)}
+                   patternmessage={"Пароли должны совпадать"}/>
         </InputField>
 
       <button className={"label"} onClick={props.setType}>

@@ -7,7 +7,7 @@ function Input(props) {
   const [isValid, setIsValid] = useState(null);
 
   useEffect(()=>{
-    console.log('use effect')
+    document.title = `${ Math.random() * (10 - 0) + 0}`
   });
 
   function onChange(ev) {
@@ -25,11 +25,6 @@ function Input(props) {
         setIsValid(props.regexp.test(String(newValue)));
       }
     }
-    if(props.onChange){
-      console.log('2')
-      props.onChange(newValue);
-      setIsValid(props.regexp.test(String(newValue)));
-    }
   }
   const hidden = {
     opacity:  0,
@@ -42,7 +37,7 @@ function Input(props) {
 
   return (
       <div>
-       <input {...props} onInput={onChange}/>
+       <input {...props} onChange={onChange} />
         {props.patternmessage? <span style = {isValid? hidden: visible}> {props.patternmessage}</span> : null}
       </div>
   );
