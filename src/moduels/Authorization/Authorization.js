@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import "./Authorization.scss"
-import "../Form/Form"
-import Form from "../Form/Form";
+import AuthForm from "./AuthForm/AuthForm";
 
 function Authorization() {
     const [type, setType] = useState('reg');
@@ -10,7 +9,7 @@ function Authorization() {
             <div className={"authorization__title"}>
                 <h1>{(type === 'reg')? 'Регистрация': 'Авторизация'}</h1>
             </div>
-           <Form className={"authorization__form"} type = {type} setType = {() => setType(type !== "reg" ? "reg": "login")}/>
+           <AuthForm className={"authorization__form"} type = {type} setType = {() => setType(type !== "reg" ? "reg": "login")}/>
         </div>
     );
 }

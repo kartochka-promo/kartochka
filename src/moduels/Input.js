@@ -1,42 +1,22 @@
-import React, {useEffect,useState} from "react";
+import React from "react";
 
 function Input(props) {
 
-
-
-  const [isValid, setIsValid] = useState(false);
-
-  useEffect(()=>{
-
-  });
-
   function onChange(ev) {
-    let newValue = ev.target.value;
-    if(props.onValidate && props.regexp){
-      let isValidValue = props.regexp.test(String(newValue));
+    let newValue = ev.target.value
+    if(props.onValidate && props.regexp && props.regexp.test(String(newValue))){
       if(!props.onChange){
-        props.onValidate(newValue);
-        setIsValid(props.regexp.test(String(newValue)));
-      } else{
-        props.onChange();
-        setIsValid(props.regexp.test(String(newValue)));
+        props.onValidate(null)
       }
+      props.onValidate(newValue)
+    }
+    if(props.onChange){
+      props.onChange(newValue)
     }
   }
-  const hidden = {
-    opacity:  0,
-    transition: 'opacity 0.25s'
-  };
-  const visible = {
-    opacity:  1,
-    transition: 'opacity 0.25s'
-  };
 
   return (
-      <div>
-       <input {...props} onChange={onChange} />
-        {props.patternmessage? <span style = {isValid? hidden: visible}> {props.patternmessage}</span> : null}
-      </div>
+      <input {...props} onChange={onChange}/>
   );
 }
 
