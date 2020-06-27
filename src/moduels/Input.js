@@ -4,24 +4,21 @@ function Input(props) {
 
 
 
-  const [isValid, setIsValid] = useState(null);
+  const [isValid, setIsValid] = useState(false);
 
   useEffect(()=>{
-    document.title = `${ Math.random() * (10 - 0) + 0}`
+
   });
 
   function onChange(ev) {
-    console.log('onChange')
     let newValue = ev.target.value;
-    if(props.onValidate && props.regexp && props.regexp.test(String(newValue))){
-      console.log('0')
+    if(props.onValidate && props.regexp){
+      let isValidValue = props.regexp.test(String(newValue));
       if(!props.onChange){
-        console.log('1')
-        props.onValidate(null);
+        props.onValidate(newValue);
         setIsValid(props.regexp.test(String(newValue)));
       } else{
-        console.log('1.1')
-        props.onChange(newValue);
+        props.onChange();
         setIsValid(props.regexp.test(String(newValue)));
       }
     }

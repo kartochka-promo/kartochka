@@ -6,10 +6,10 @@ import Input from "../Input";
 
 function Form(props) {
 
-  const [name, setName] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [rePassword, setRePassword] = useState(null);
+  const [name, setName] = useState({valid:false, value:null});
+  const [email, setEmail] = useState({valid:false, value:null});
+  const [password, setPassword] = useState({valid:false, value:null});
+  const [rePassword, setRePassword] = useState({valid:false, value:null});
 
   let isValid = false;
   let isValidName = false;
@@ -20,12 +20,8 @@ function Form(props) {
   useEffect(() => {
       console.log('use effect form')
       isValid = props.type === 'reg'?
-          name !== null && email !== null  && password !== null && password === rePassword:
-          email !== null  && password !== null;
-      isValidName = name !== null;
-      isValidEmail= email !== null;
-      isValidRePassword = rePassword !== null;
-
+          name.valid && email.valid  && password.valid && password.valid && password.value === rePassword.value:
+          email.valid  && password.valid;
   });
 
 
@@ -52,13 +48,13 @@ function Form(props) {
   return (
     <div className={"auth-form"}>
         <InputField hidden={props.type !== "reg"} text={"Имя"}>
-            <Input type= {"text"} onValidate={(val) => {setName(val)}} regexp={RegExp(
+            <Input type= {"text"} onValidate={(val) => { console.log('setName', val);setName(val)}} regexp={RegExp(
                 "^[_A-z0-9]*((-|\\s)*[_A-z0-9])*$")}
                    patternmessage={"Имя должно..."}/>
         </InputField>
 
         <InputField text={"Почта"}>
-            <Input type= {"text"} onValidate={(val) => setEmail(val)} regexp={RegExp(
+            <Input  type= {"text"} onValidate={(val) => { console.log('setEmail', val); setEmail(val)}} regexp={RegExp(
                 "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])")}
                    patternmessage={"Почта должна..."}/>
         </InputField>
@@ -69,8 +65,9 @@ function Form(props) {
         </InputField>
 
         <InputField hidden={props.type !== "reg"} text={"Повторите пароль"}>
-            <Input type= {"password"}
-                   onValidate={(val) => {setRePassword(val)}}
+            <Input
+                type= {"password"}
+                   onValidate={(val) => setRePassword(val)}
                    regexp={RegExp(`^(${password?password:'^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'})`)}
                    patternmessage={"Пароли должны совпадать"}/>
         </InputField>
@@ -80,9 +77,11 @@ function Form(props) {
       </button>
 
       <button onClick={() => {
-          if (isValid) {
+          isValid = name && email && password && rePassword
+          if (name.valid) {
             alert(`${name}, ${email}, ${password}`)
           } else{
+              console.log('values', name, email, password, rePassword)
               console.log('isValid',isValid, isValidName, isValidEmail, isValidPassword, isValidRePassword)
           }
         }}
