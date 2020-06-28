@@ -14,8 +14,8 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        {/*<Landing/>*/}
-        <Authorization type="reg"/>
+        <Landing/>
+        {/*<Authorization type="reg"/>*/}
       </div>
     </Provider>
   );
