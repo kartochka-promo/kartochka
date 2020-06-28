@@ -2,13 +2,14 @@ import React, {useEffect, useState} from 'react';
 import "./Authorization.scss"
 import AuthForm from "./AuthForm/AuthForm";
 import {history} from "../../index";
-
+import {Link} from "react-router-dom";
 
 function Authorization(props) {
     const [type, setType] = useState(props.type);
     return (
         <div className={"authorization"}>
-            <div className={"authorization__title"}>
+            <Link to={{ pathname: '/landing' }}>Лендос(Тест)</Link>
+                <div className={"authorization__title"}>
                 <h1>{(type === 'reg')? 'Регистрация': 'Авторизация'}</h1>
             </div>
            <AuthForm
