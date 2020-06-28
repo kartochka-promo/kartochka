@@ -7,6 +7,7 @@
   margin-top: 50px;
 
   position: relative;
+  width: 100%;
 
   .line{
     display: flex;
@@ -22,17 +23,34 @@
       height: 100px;
     }
 
-    .number{
-      font-size: 10vw;
-      color: #FA9917;
-      display: inline-block;
-      font-weight: bold;
+    @media only screen and (min-width: 700px) {
+      .number{
+        font-size: 5vw;
+        color: #FA9917;
+        display: inline-block;
+        font-weight: bold;
+      }
+
+      .description{
+        max-width: 70%;
+        font-size: 2vw;
+        margin-left: 2%;
+      }
     }
 
-    .description{
-      max-width: 70%;
-      font-size: 3vw;
-      margin-left: 2%;
+    @media only screen and (max-width: 700px) {
+      .number{
+        font-size: 10vw;
+        color: #FA9917;
+        display: inline-block;
+        font-weight: bold;
+      }
+
+      .description{
+        max-width: 70%;
+        font-size: 3.5vw;
+        margin-left: 2%;
+      }
     }
   }
 }

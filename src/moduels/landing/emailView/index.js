@@ -14,7 +14,7 @@ function EmailView() {
           onChange={(val) => setEmail(val)}
         />
         <button
-          className={"action-button email-button"}
+          className={"action-button stretch email-button"}
           onClick={() => {
             alert(email)
           }}

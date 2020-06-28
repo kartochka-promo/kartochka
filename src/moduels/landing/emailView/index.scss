@@ -14,13 +14,16 @@
     width: 90%;
 
     Input{
-      width: 90%;
+      width: 100%;
       max-width: 600px;
+      box-sizing: border-box;
       font-size: 30px;
+      height: 64px;
+
     }
 
     .email-button{
-      width: 90%;
+      width: 100%;
       max-width: 300px;
     }
   }

@@ -1,8 +1,11 @@
 import React from 'react';
 import "./index.scss"
 import kartochka from "../../img/card.svg"
+import qr from "../../img/qr.svg"
+import desctop from "../../img/desktop.svg"
 import LoyaltyView from "./loyaltyView";
 import EmailView from "./emailView";
+import FeatureView from "./featureView";
 
 function Landing() {
   return (
@@ -50,7 +53,7 @@ function Landing() {
                   Вы выбираете программу лояльности и оформление карточки, настраивая их специально для Вашего бизнеса, в нашем редакторе.
                 </div>
               </div>
-              <img src={kartochka} className={"image card"}/>
+              <img src={desctop} className={"image desktop"}/>
             </div>
           </div>
           <div className={"column third"}>
@@ -63,12 +66,13 @@ function Landing() {
                     Ваш клиент сканирует QR-код с барной стойки или переходит по ссылке из социальной сети. После этого к нему в Apple Wallet или Google Pay добавляется карта вашего бизнеса.
                   </div>
                 </div>
-                <img src={kartochka} className={"image card"}/>
+                <img src={qr} className={"image"}/>
             </div>
           </div>
         </div>
       </div>
       <LoyaltyView/>
+      <FeatureView/>
       <EmailView/>
     </div>
   );

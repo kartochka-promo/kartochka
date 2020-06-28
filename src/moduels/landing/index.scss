@@ -59,6 +59,12 @@
       }
     }
 
+    .card-holder:hover{
+      .card {
+        transform: rotate(0);
+      }
+    }
+
     .card{
       position: absolute;
       height: 100%;
@@ -68,25 +74,37 @@
       border-radius: 8%;
 
       &.first{
+        transition: all 0.7s;
         transform: rotate(-30deg);
         animation: card_appear_first 0.7s;
+
+        &:hover{
+          transform: rotate(0);
+        }
       }
       &.second{
+        transition: all 0.7s;
         transform: rotate(-15deg);
         animation: card_appear_second 0.7s;
+
       }
       &.third{
+        transition: all 0.7s;
         transform: rotate(0deg);
+        &:hover{
+          transform: rotate(0);
+        }
       }
     }
 
     .title-container{
-      max-width: 60%;
+      max-width: 50%;
       flex-grow: 2;
       margin-right: 20px;
 
-      .title{
-        font-weight: bold;
+      h2{
+        font-weight: normal;
+        font-size: 30px;
       }
     }
 
@@ -109,7 +127,7 @@
     (max-width: 1025px) and (min-height: 1025px)
     {
       .title-container{
-        max-width: 80%;
+        max-width: 60%;
       }
       .title{
         font-size: 6vh;
@@ -181,7 +199,7 @@
 
       .column{
         position: relative;
-        width: 90%;
+        width: 85%;
         margin-left: 20px;
         margin-right: 20px;
         min-width: 375px;
@@ -192,10 +210,36 @@
           }
         }
 
-        h2{
-          margin-left: 30px;
-          margin-right: 30px;
+        @media only screen and (min-width: 700px) {
+          h2{
+            margin-left: 30px;
+            margin-right: 30px;
+            font-size: 45px;
+            font-weight: normal;
+          }
+
+          .content{
+            .text-content{
+              font-size: 25px;
+            }
+          }
         }
+
+        @media only screen and (max-width: 700px) {
+          h2{
+            margin-left: 30px;
+            margin-right: 30px;
+            font-size: 30px;
+            font-weight: normal;
+          }
+
+          .content{
+            .text-content{
+              font-size: 20px;
+            }
+          }
+        }
+
         .content{
           position: relative;
           display: flex;
@@ -207,18 +251,33 @@
           .text-content{
             width: 90%;
             min-width: 375px;
-            max-width: 600px;
-            font-size: 20px;
+            max-width: 900px;
             margin-right: 5%;
             margin-left: 5%;
           }
+
+          @media only screen and (min-width: 700px) {
+            .image{
+              width: 20vw;
+            }
+          }
+
+          @media only screen and (max-width: 700px) {
+            .image{
+              width: 30vw;
+            }
+          }
+
           .image{
             position: relative;
-            height: 20vw;
             margin-right: 5%;
             margin-left: 5%;
             margin-top: 2%;
             margin-bottom: 2%;
+
+            //&.desktop{
+            //  width: 20vw;
+            //}
           }
         }
       }
