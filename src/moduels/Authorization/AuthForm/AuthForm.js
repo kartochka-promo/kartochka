@@ -40,13 +40,13 @@ function AuthForm(props) {
     <div className={"auth-form"}>
             <InputField
                 text={"Имя"}
-                patternmessage={"Минимум 8 символов.\nСпециальные символы запрещены"}
+                patternmessage={"Минимум 2 символа.\nСпециальные символы запрещены"}
                 hidden={props.type !== "reg"}
                 value = {name.value}
                 type= {"text"}
                 onValidate={(val) => setIsValidName(val)}
                 onChange={(val) => setName(val)}
-                regexp={RegExp("^[_A-zА-я0-9]*((-|\\s)*[_A-zА-я0-9]){8,}")}
+                regexp={RegExp("^[_A-zА-я0-9]*((-|\\s)*[_A-zА-я0-9]){2,}")}
                    />
 
             <InputField
@@ -105,7 +105,7 @@ function AuthForm(props) {
               alert(`Просас\n${props.type === 'reg'? name + '\n' + email + '\n' + password : email + '\n' + password }`);
           }
         }}
-        className={`auth-button-invalid`}>
+        className={'auth-button-invalid'}>
         {props.type !== "reg" ? "Войти": "Регистрация"}
       </button>
     </div>
