@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 function Input(props) {
 
@@ -31,7 +31,7 @@ function Input(props) {
   return (
       <div>
        <input {...props} onChange={(ev) => onChange(ev)} value={value}/>
-        {props.patternmessage? <span style = {isValid? hidden: visible}> {props.patternmessage}</span> : null}
+        {props.patternmessage? <span style = {isValid? "hidden": "visible"}> {props.patternmessage}</span> : null}
       </div>
   );
 }

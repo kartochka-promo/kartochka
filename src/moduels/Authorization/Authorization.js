@@ -9,7 +9,7 @@ function Authorization(props) {
     return (
         <div className={"authorization"}>
             <Link to={{ pathname: '/landing' }}>Лендос(Тест)</Link>
-                <div className={"authorization__title"}>
+            <div className={"authorization__title"}>
                 <h1>{(type === 'reg')? 'Регистрация': 'Авторизация'}</h1>
             </div>
            <AuthForm
