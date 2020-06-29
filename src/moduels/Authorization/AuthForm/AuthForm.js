@@ -80,11 +80,13 @@ function AuthForm(props) {
           } else{
               let inputs = document.getElementsByClassName('input-field');
               const time = 820;
-              const animation = `shake ${time}ms cubic-bezier(.36,.07,.19,.97) both`;
               let i = 0;
               for(let [,value] of Object.entries(formValidation)){
                   if(!value){
-                    AnimationHandler.addAnimation(inputs.item(i),animation, time);
+                    AnimationHandler.addAnimation(
+                        inputs.item(i),
+                        `shake ${time}ms cubic-bezier(.36,.07,.19,.97) both`,
+                        time);
                   }
                   i++;
               }
