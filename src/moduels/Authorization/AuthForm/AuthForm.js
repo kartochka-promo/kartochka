@@ -1,40 +1,32 @@
 import React, {useEffect, useState} from 'react';
 import "./AuthForm.scss"
 import InputField from "./InputField/InputField";
-
+import AnimationHandler from "../../../utils/AnimationHandler";
 function AuthForm(props) {
 
-  const [name, setName] = useState('');
-  const [isValidName, setIsValidName] = useState(false);
 
-  const [email, setEmail] = useState('');
-  const [isValidEmail, setIsValidEmail] = useState(false);
-
-  const [password, setPassword] = useState('');
-  const [isValidPassword, setIsValidPassword] = useState(false);
-
-  const [rePassword, setRePassword] = useState('');
-  const [isValidRePassword, setIsValidRePassword] = useState(false);
-
-  let isValid = false;
-
-  useEffect(() => {
-      isValid = props.type === 'reg'?
-          isValidName && isValidEmail  && isValidPassword && isValidRePassword && password=== rePassword:
-          isValidEmail && isValidRePassword;
-      let btn = document.getElementById('auth-button');
-      btn.className = isValid? 'auth-button-valid': 'auth-button-invalid';
-
+  const [isValid, setIsValid] = useState(false);
+  const [formValues, setFormValues] = useState({
+      name: '',
+      email:'',
+      password: '',
+      rePassword: '',
+  });
+  const [formValidation, setFormValidation] = useState({
+      validName: false,
+      validEmail: false,
+      validPassword: false,
+      validRePassword: false,
   });
 
-  const removeAnimations = () => {
-        let inputs = document.getElementsByClassName('input-field');
-        for(let i = 0; i < inputs.length; i++){
-            inputs.item(i).style.animation = ''
-        }
-    }
+  useEffect(() => {
+      setIsValid(props.type === 'reg'?
+          formValidation.validName && formValidation.validEmail  &&
+          formValidation.validPassword && formValidation.validRePassword &&
+          formValidation.password === formValidation.rePassword:
+          formValidation.validEmail && formValidation.validPassword);
 
-
+  });
 
   return (
     <div className={"auth-form"}>
@@ -42,20 +34,18 @@ function AuthForm(props) {
                 text={"Имя"}
                 patternmessage={"Минимум 2 символа.\nСпециальные символы запрещены"}
                 hidden={props.type !== "reg"}
-                value = {name.value}
                 type= {"text"}
-                onValidate={(val) => setIsValidName(val)}
-                onChange={(val) => setName(val)}
+                onValidate={(val) => setFormValidation(formValidation => {return {...formValidation, validName: val}} )}
+                onChange={(val) => setFormValues(formValues => { return {...formValues, name: val} })}
                 regexp={RegExp("^[_A-zА-я0-9]*((-|\\s)*[_A-zА-я0-9]){2,}")}
                    />
 
             <InputField
                 text={"Почта"}
                 patternmessage={"Введите корректную почту"}
-                value = {email.value}
                 type= {"text"}
-                onValidate={(val) =>  setIsValidEmail(val)}
-                onChange={(val) => setEmail(val)}
+                onValidate={(val) => setFormValidation(formValidation => {return {...formValidation, validEmail: val}} )}
+                onChange={(val) => setFormValues(formValues => { return {...formValues, email: val} })}
                 regexp={RegExp("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])")}
                    />
 
@@ -63,8 +53,8 @@ function AuthForm(props) {
                 text={"Пароль"}
                 patternmessage={"Минимум 8 символов.\nПароль должен содержать числа и заглавные буквы"}
                 type= {"password"}
-                onValidate={(val) => setIsValidPassword(val)}
-                onChange={(val) => setPassword(val)}
+                onValidate={(val) => setFormValidation(formValidation => {return {...formValidation, validPassword: val}} )}
+                onChange={(val) => setFormValues(formValues => { return {...formValues, password: val} })}
                 regexp={RegExp("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")}
             />
 
@@ -73,39 +63,38 @@ function AuthForm(props) {
                 patternmessage={"Пароли должны совпадать"}
                 hidden={props.type !== "reg"}
                 type= {"password"}
-                onValidate={(val) => setIsValidRePassword(val)}
-                onChange={(val) => setRePassword(val)}
-                regexp={RegExp(`^(${password?password:'^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'})`)}
+                onValidate={(val) => setFormValidation(formValidation => {return {...formValidation, validRePassword: val}} )}
+                onChange={(val) => setFormValues(formValues => { return {...formValues, rePassword: val} })}
+                regexp={RegExp(`^(${formValidation.password?formValidation.password:'^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'})`)}
                    />
 
       <button className={"label"} onClick={props.setType}>
         {props.type !== "reg" ? "Нет аккаунта": "Есть аккаунт"}
       </button>
 
-      <button id= {"auth-button"} onClick={(event) => {
-
+      <button id= {"auth-button"} onClick={() => {
           if (isValid) {
-              alert(`Все чикипуки\n ${props.type === 'reg'? name + '\n' + email + '\n' + password : email + '\n' + password }`);
+              alert(`Все чикипуки\n 
+              ${props.type === 'reg'? formValues.name + '\n' + formValues.email + '\n' + formValues.password :
+                  formValues.email + '\n' + formValues.password }`);
           } else{
               let inputs = document.getElementsByClassName('input-field');
               const time = 820;
-              if(!isValidName){
-                  inputs.item(0).style.animation = `shake ${time}ms cubic-bezier(.36,.07,.19,.97) both`
+              const animation = `shake ${time}ms cubic-bezier(.36,.07,.19,.97) both`;
+              let i = 0;
+              for(let [,value] of Object.entries(formValidation)){
+                  if(!value){
+                    AnimationHandler.addAnimation(inputs.item(i),animation, time);
+                  }
+                  i++;
               }
-              if(!isValidEmail){
-                  inputs.item(1).style.animation = `shake ${time}ms  cubic-bezier(.36,.07,.19,.97) both`
-              }
-              if(!isValidPassword){
-                  inputs.item(2).style.animation = `shake ${time}ms  cubic-bezier(.36,.07,.19,.97) both`
-              }
-              if(!isValidRePassword){
-                  inputs.item(3).style.animation = `shake ${time}ms  cubic-bezier(.36,.07,.19,.97) both`
-              }
-              setTimeout(removeAnimations, time);
-              alert(`Просас\n${props.type === 'reg'? name + '\n' + email + '\n' + password : email + '\n' + password }`);
+
+              alert(`Просас\n
+              ${props.type === 'reg'? formValues.name + '\n' + formValues.email + '\n' + formValues.password :
+                  formValues.email + '\n' + formValues.password }`);
           }
         }}
-        className={'auth-button-invalid'}>
+        className={isValid? 'auth-button-valid': 'auth-button-invalid'}>
         {props.type !== "reg" ? "Войти": "Регистрация"}
       </button>
     </div>

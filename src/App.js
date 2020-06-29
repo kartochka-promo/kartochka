@@ -16,13 +16,10 @@ function App() {
           <main className='main'>
               <Switch>
                   <Route path='/landing' component={Landing} />
-                  <Route exact path='/login' component={() => <Authorization type={'login'} />} />
-                  <Route exact path='/reg' component={() => <Authorization type={'reg'} />} />
+                  <Route exact path='/auth' component={() => <Authorization/>}/>
                   <Redirect to='/'/>
               </Switch>
           </main>
-        {/*<Landing/>*/}
-        {/*<Authorization type="reg"/>*/}
       </div>
     </Provider>
   );

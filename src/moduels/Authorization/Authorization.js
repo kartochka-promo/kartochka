@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import "./Authorization.scss"
 import AuthForm from "./AuthForm/AuthForm";
-import {history} from "../../index";
 import {Link} from "react-router-dom";
 
 function Authorization(props) {
@@ -15,16 +14,7 @@ function Authorization(props) {
            <AuthForm
                className={"authorization__form"}
                type = {type}
-               setType = {
-                   () => {
-                       if(type === 'reg'){
-                           history.push('/login');
-                           setType('login')
-                       } else if(type === 'login'){
-                           history.push('/reg');
-                           setType('reg')
-                       }
-                }
+               setType = {() => { (type === 'reg')? setType('login'): setType('reg')}
            }/>
         </div>
     );
