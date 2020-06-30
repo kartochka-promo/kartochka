@@ -1,11 +1,7 @@
-let sampleState = {
-  user: null
-}
+let sampleState = {}
 
 function reducer(state= sampleState, action){
   switch(action.type) {
-    case "get_user":
-
     default:
       return state;
   }
