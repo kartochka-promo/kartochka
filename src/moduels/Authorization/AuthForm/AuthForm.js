@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import "./AuthForm.scss"
 import InputField from "./InputField/InputField";
 import AnimationHandler from "../../../utils/AnimationHandler";
+import {Ajax} from "../../../utils/Ajax";
+import {globalConsts} from "../../../globalConsts";
 function AuthForm(props) {
 
 
@@ -19,6 +21,58 @@ function AuthForm(props) {
       validRePassword: false,
   });
 
+  const register = [`${globalConsts.server.PATH_STAFF}/api/v1/staff`, 'POST',
+      {
+          'name': formValues.name,
+          'email': formValues.email,
+          'password': formValues.password,
+          'isOwner': true,
+          'Position': 'Владелец'
+      }, (response) => {
+          if (response.errors === null){
+              console.log('success reg', response);
+              alert('success reg');
+          } else {
+              console.log('error reg', response);
+              alert('error reg');
+              throw response.errors;
+          }
+      },true];
+
+  const registerStaff = [`${globalConsts.server.PATH_STAFF}/api/v1/add_staff?uuid=${props.uuid}&position=${props.position}`,
+      'POST',
+      {
+          'name': formValues.name,
+          'email': formValues.email,
+          'password': formValues.password,
+      }, (response) => {
+          if (response.errors === null){
+              console.log('success reg staff', response);
+              alert('success reg staff');
+          } else {
+              console.log('error reg staff', response);
+              alert('error reg staff');
+              throw response.errors;
+          }
+      },true
+  ];
+
+  const login = [`${globalConsts.server.PATH_STAFF}/api/v1/staff/login`, 'POST',
+      {
+          'email': formValues.email,
+          'password': formValues.password
+      }, (response) => {
+          if (response.errors === null){
+              console.log('success login', response);
+              alert('success login')
+          } else {
+              console.log('error login', response);
+              alert('error login');
+              throw response.errors;
+          }
+      },false];
+
+
   useEffect(() => {
       setIsValid(props.type === 'reg'?
           formValidation.validName && formValidation.validEmail  &&
@@ -35,27 +89,33 @@ function AuthForm(props) {
                 patternmessage={"Минимум 2 символа.\nСпециальные символы запрещены"}
                 hidden={props.type !== "reg"}
                 type= {"text"}
-                onValidate={(val) => setFormValidation(formValidation => {return {...formValidation, validName: val}} )}
-                onChange={(val) => setFormValues(formValues => { return {...formValues, name: val} })}
-                regexp={RegExp("^[_A-zА-я0-9]*((-|\\s)*[_A-zА-я0-9]){2,}")}
+                onValidate={(val) => setFormValidation(
+                    formValidation => {return {...formValidation, validName: val}} )}
+                onChange={(val) => setFormValues(
+                    formValues => { return {...formValues, name: val} })}
+                regexp={RegExp(globalConsts.validator.nameRegexp)}
                    />
 
             <InputField
                 text={"Почта"}
                 patternmessage={"Введите корректную почту"}
                 type= {"text"}
-                onValidate={(val) => setFormValidation(formValidation => {return {...formValidation, validEmail: val}} )}
-                onChange={(val) => setFormValues(formValues => { return {...formValues, email: val} })}
-                regexp={RegExp("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])")}
+                onValidate={(val) => setFormValidation(
+                    formValidation => {return {...formValidation, validEmail: val}} )}
+                onChange={(val) => setFormValues(
+                    formValues => { return {...formValues, email: val} })}
+                regexp={RegExp(globalConsts.validator.emailRegexp)}
                    />
 
             <InputField
                 text={"Пароль"}
                 patternmessage={"Минимум 8 символов.\nПароль должен содержать числа и заглавные буквы"}
                 type= {"password"}
-                onValidate={(val) => setFormValidation(formValidation => {return {...formValidation, validPassword: val}} )}
-                onChange={(val) => setFormValues(formValues => { return {...formValues, password: val} })}
-                regexp={RegExp("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$")}
+                onValidate={(val) => setFormValidation(
+                    formValidation => {return {...formValidation, validPassword: val}} )}
+                onChange={(val) => setFormValues(
+                    formValues => { return {...formValues, password: val} })}
+                regexp={RegExp(globalConsts.validator.passwordRegexp)}
             />
 
             <InputField
@@ -63,20 +123,30 @@ function AuthForm(props) {
                 patternmessage={"Пароли должны совпадать"}
                 hidden={props.type !== "reg"}
                 type= {"password"}
-                onValidate={(val) => setFormValidation(formValidation => {return {...formValidation, validRePassword: val}} )}
-                onChange={(val) => setFormValues(formValues => { return {...formValues, rePassword: val} })}
-                regexp={RegExp(`^(${formValidation.password?formValidation.password:'^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$'})`)}
+                onValidate={(val) => setFormValidation(
+                    formValidation => {return {...formValidation, validRePassword: val}} )}
+                onChange={(val) => setFormValues(
+                    formValues => { return {...formValues, rePassword: val} })}
+                regexp={RegExp(`^(${formValidation.password?
+                    formValidation.password:
+                    globalConsts.validator.passwordRegexp})`)}
                    />
+        {props.type !== 'staff-reg' ?
+            <button className={"label"} onClick={props.setType}>
+                {props.type !== "reg" ? "Нет аккаунта" : "Есть аккаунт"}
+            </button> :
+            null
+        }
 
-      <button className={"label"} onClick={props.setType}>
-        {props.type !== "reg" ? "Нет аккаунта": "Есть аккаунт"}
-      </button>
-
-      <button id= {"auth-button"} onClick={() => {
+      <button id= {"auth-button"} onClick={ async () => {
           if (isValid) {
-              alert(`Все чикипуки\n 
-              ${props.type === 'reg'? formValues.name + '\n' + formValues.email + '\n' + formValues.password :
-                  formValues.email + '\n' + formValues.password }`);
+              if(props.type === 'reg'){
+                  await Ajax(...register);
+              } else if(props.type === 'login'){
+                  await Ajax(...login);
+              } else if(props.type === 'staff-reg'){
+                  await Ajax(...registerStaff);
+              }
           } else{
               let inputs = document.getElementsByClassName('input-field');
               const time = 820;
@@ -90,14 +160,10 @@ function AuthForm(props) {
                   }
                   i++;
               }
-
-              alert(`Просас\n
-              ${props.type === 'reg'? formValues.name + '\n' + formValues.email + '\n' + formValues.password :
-                  formValues.email + '\n' + formValues.password }`);
           }
         }}
         className={isValid? 'auth-button-valid': 'auth-button-invalid'}>
-        {props.type !== "reg" ? "Войти": "Регистрация"}
+        {props.type === "login" ? "Войти": "Регистрация"}
       </button>
     </div>
   );
