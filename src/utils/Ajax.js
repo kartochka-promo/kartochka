@@ -16,7 +16,6 @@ export async function Ajax(route, method, body, callback,isFormData) {
         } else{
             reqBody['body'] = JSON.stringify(body);
         }
-
     }
 
     const myCsrf = sessionStorage.getItem('Csrf');

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import "./AuthForm.scss"
-import InputField from "./InputField/InputField";
+import InputField from "../../InputField/InputField";
 import AnimationHandler from "../../../utils/AnimationHandler";
 import {Ajax} from "../../../utils/Ajax";
 import {globalConsts} from "../../../globalConsts";
@@ -74,7 +74,7 @@ function AuthForm(props) {
 
 
   useEffect(() => {
-      setIsValid(props.type === 'reg'?
+      setIsValid(props.type !== 'login'?
           formValidation.validName && formValidation.validEmail  &&
           formValidation.validPassword && formValidation.validRePassword &&
           formValidation.password === formValidation.rePassword:
@@ -83,11 +83,11 @@ function AuthForm(props) {
   });
 
   return (
-    <div className={"auth-form"}>
+    <div className={"form"}>
             <InputField
                 text={"Имя"}
                 patternmessage={"Минимум 2 символа.\nСпециальные символы запрещены"}
-                hidden={props.type !== "reg"}
+                hidden={props.type === "login"}
                 type= {"text"}
                 onValidate={(val) => setFormValidation(
                     formValidation => {return {...formValidation, validName: val}} )}
@@ -121,7 +121,7 @@ function AuthForm(props) {
             <InputField
                 text={"Повторите пароль"}
                 patternmessage={"Пароли должны совпадать"}
-                hidden={props.type !== "reg"}
+                hidden={props.type === "login"}
                 type= {"password"}
                 onValidate={(val) => setFormValidation(
                     formValidation => {return {...formValidation, validRePassword: val}} )}
@@ -133,7 +133,7 @@ function AuthForm(props) {
                    />
         {props.type !== 'staff-reg' ?
             <button className={"label"} onClick={props.setType}>
-                {props.type !== "reg" ? "Нет аккаунта" : "Есть аккаунт"}
+                {props.type === "reg" ? "Есть аккаунт" : "Нет аккаунта"}
             </button> :
             null
         }
