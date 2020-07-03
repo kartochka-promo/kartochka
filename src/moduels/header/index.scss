@@ -4,7 +4,7 @@
   width: 90%;
   margin-top: 20px;
   justify-content: space-between;
-  position: fixed;
+  position: fixed; //надо подумать над положением хедера и вьюшек
   z-index: 20;
   top: 0;
   left: 5%;
@@ -27,6 +27,7 @@
   .header-button{
     font-size: 30px;
     outline: none;
+    cursor: pointer;
 
   }
 }

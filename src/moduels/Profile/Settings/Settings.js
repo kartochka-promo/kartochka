@@ -15,15 +15,7 @@ function Settings(props) {
     };
 
     return (
-        <Select
-            name="form-field-name"
-            value={state.selectedOption}
-            onChange={handleChange}
-            options={[
-                { value: 'one', label: 'One' },
-                { value: 'two', label: 'Two' },
-            ]}
-        />);
+        <div>Настройки</div>);
 
 }
 

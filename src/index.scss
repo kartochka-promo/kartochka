@@ -5,6 +5,18 @@
 @import "styles/text";
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,500,700,900&display=swap);
 
+html{
+  height: 100%;
+  width: 100%;
+}
+body{
+  //height: 100%;
+  //width: 100%;
+}
+#root{
+  //height: 100%;
+  //width: 100%;
+}
 div{
   font-family: Montserrat, sans-serif;
 }

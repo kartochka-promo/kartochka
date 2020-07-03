@@ -14,7 +14,6 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-          <main className='main'>
               <Switch>
                   <Route path='/landing' component={Landing} />
                   <Route exact path='/auth' component={() => <Authorization type = {'reg'}/>}/>
@@ -22,7 +21,6 @@ function App() {
                   <Route exact path='/auth/:uuid/:position' component={() => <Authorization type = {'staff-reg'} />}/>
                   <Redirect to='/'/>
               </Switch>
-          </main>
       </div>
     </Provider>
   );

@@ -7,7 +7,6 @@ function Authorization(props) {
     const [type, setType] = useState(props.type);
     return (
         <div className={"authorization"}>
-            <Link to={{ pathname: '/landing' }}>Лендос(Тест)</Link>
             <div className={"authorization__title"}>
                 <h1>{(type === 'login')? 'Авторизация': 'Регистрация'}</h1>
             </div>

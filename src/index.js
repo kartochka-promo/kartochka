@@ -3,14 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
-import { BrowserRouter } from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
-export const history = createBrowserHistory();
+
+export const customHistory = createBrowserHistory();
+
 
 ReactDOM.render(
-    <BrowserRouter history={history}>
+    <BrowserRouter history={customHistory}>
   <React.StrictMode>
     <App />
   </React.StrictMode>
