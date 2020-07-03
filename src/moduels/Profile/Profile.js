@@ -4,11 +4,15 @@ import './Profile.scss'
 import {Link} from "react-router-dom";
 import ProfileForm from "./ProfileForm/ProfileForm";
 import Settings from "./Settings/Settings";
+import Header from "../header";
 
 function Profile(props) {
     const [type, setType] = useState('profile');
     return (
+        <div>
+            <Header/>
         <div className={"profile"}>
+
             <Link to={{ pathname: '/landing' }}>Лендос(Тест)</Link>
 
             <div className={'profile__nav-container'}>
@@ -52,6 +56,7 @@ function Profile(props) {
 
             {type === 'profile' ? <ProfileForm className={"profile__form"} type = {type}/> : null}
             {type === 'settings' ? <Settings/> : null}
+        </div>
         </div>
     );
 }
