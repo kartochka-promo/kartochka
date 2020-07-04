@@ -1,15 +1,8 @@
-import React, {useEffect,useState} from "react";
+import React, {useState} from "react";
+
 
 function InputField(props) {
-
-
-
   const [isValid, setIsValid] = useState(false);
-
-  useEffect(()=>{
-
-  });
-
   function onChange(ev) {
     let newValue = ev.target.value;
     setIsValid(props.regexp.test(String(newValue)));
@@ -20,28 +13,12 @@ function InputField(props) {
       props.onChange(newValue);
     }
   }
-  const hidden = {
-    opacity:  0,
-    transition: 'opacity 0.25s'
-  };
-  const visible = {
-    opacity:  1,
-    transition: 'opacity 0.25s'
-  };
-
-  const correct ={
-    borderColor: ' #FA9917',
-  };
-  const incorrect ={
-    borderColor: 'black',
-  }
-
   return(
-      <div className={"input-field"} style={props.hidden? hidden : visible} >
+      <div className={`input-field${props.hidden?'hidden':''}`} >
         <label>{props.text} </label>
         <div className={"input-field__container"}>
-          <input style = {isValid? correct: incorrect} className={"input-field__container_input"} type = {props.type} onChange={onChange} />
-          {props.patternmessage? <span style = {isValid? hidden: visible}> {props.patternmessage}</span> : null}
+          <input className={`input-field__container_input ${isValid? 'correct': ''}`} type = {props.type} onChange={onChange} />
+          {props.patternmessage? <span className={`input-field__container_span ${isValid? '': 'hidden'}`} > {props.patternmessage}</span> : null}
         </div>
       </div>
   );

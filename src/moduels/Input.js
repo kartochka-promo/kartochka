@@ -3,14 +3,10 @@ import React, {useState} from "react";
 function Input(props) {
 
   let [value, setValue] = useState("")
-
   const [isValid, setIsValid] = useState(false);
 
   function onChange(ev) {
-
     setValue(ev.target.value)
-    console.log(value)
-
     let newValue = ev.target.value;
     if(props.onValidate && props.regexp){
       let isValidValue = props.regexp.test(String(newValue));
