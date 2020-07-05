@@ -1,0 +1,51 @@
+@import '../../../styles/colours';
+.settings-card{
+  display: flex;
+  flex-direction: column;
+  &__selects{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__localization{
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      margin: 0 20px;
+      &_span{
+        cursor: default;
+        font-size: 1.5rem;
+      }
+    }
+
+    &__theme{
+      display: flex;
+      align-content: center;
+      flex-direction: row;
+      margin: 0 20px;
+      &_span{
+        cursor: default;
+        font-size: 1.5rem;
+      }
+    }
+
+  }
+  &__delete-account{
+    margin-top:100%
+  }
+
+
+}
+
+
+
+.settings__select{
+  padding: 0;
+  margin: 0 0 0 10px;
+  height: 25px;
+  width: 300px;
+  color: $main-colour;
+  background: #fff;
+  border: 1px solid $main-colour;
+  overflow: initial;
+}

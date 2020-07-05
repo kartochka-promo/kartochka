@@ -1,6 +1,5 @@
 import React, {useState} from "react";
-
-
+import './InputField.scss'
 function InputField(props) {
   const [isValid, setIsValid] = useState(false);
   function onChange(ev) {
@@ -15,14 +14,12 @@ function InputField(props) {
   }
   return(
       <div className={`input-field${props.hidden?'hidden':''}`} >
-        <label>{props.text} </label>
+        {props.text?<label>{props.text} </label>:null}
         <div className={"input-field__container"}>
           <input className={`input-field__container_input ${isValid? 'correct': ''}`} type = {props.type} onChange={onChange} />
-          {props.patternmessage? <span className={`input-field__container_span ${isValid? '': 'hidden'}`} > {props.patternmessage}</span> : null}
+          {props.onValidate && props.regexp && props.patternmessage? <span className={`input-field__container_span ${isValid? '': 'hidden'}`} > {props.patternmessage}</span> : null}
         </div>
       </div>
   );
-
 }
-
 export default InputField;

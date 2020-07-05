@@ -1,0 +1,46 @@
+.input-field {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+
+
+  label{
+    margin: 5px 0;
+    font-size: 1rem;
+  }
+  &__container{
+    width: 100%;
+    &_input{
+      position: relative;
+      margin: 5px 0;
+      -webkit-appearance: none;
+      background: none;
+      border: none;
+      border-radius: 0;
+      border-bottom: solid 2px;
+      outline:none;
+      font-size: 1rem;
+      width: 100%;
+      border-color: black;
+
+      &.correct{
+        border-color: #FA9917;
+      }
+
+    }
+
+    &_span{
+      margin: 0;
+      font-size: 0.75rem;
+      cursor: default;
+      transition: opacity 0.25s;
+      opacity:  0;
+      &.hidden{
+        opacity:  1;
+      }
+    }
+  }
+
+
+
+}

@@ -1,21 +1,75 @@
 import React, {useEffect, useState} from 'react';
 import {Ajax} from "../../../utils/Ajax";
 import {globalConsts} from "../../../globalConsts";
-import Select from 'react-select';
+import Select from "react-dropdown-select";
+import './Settings.scss'
+
 function Settings(props) {
 
-    let [state, setState] = useState({});
-
-    const handleChange = (selectedOption) => {
-        setState({ selectedOption });
-        // selectedOption can be null when the `x` (close) button is clicked
-        if (state.selectedOption) {
-            console.log(`Selected: ${state.selectedOption.label}`);
-        }
-    };
+    const languageOptions = [
+        {
+            language: 'Русский',
+            code: 'ru',
+            disabled: false,
+        },
+        {
+            language: 'English',
+            code: 'en',
+            disabled: true,
+        },
+        {
+            language: 'Español',
+            code: 'es',
+            disabled: true,
+        },
+    ];
+    const themeOptions = [
+        {
+            theme: 'Светлая',
+            code: 'light',
+            disabled: false,
+        },
+        {
+            theme: 'Темная',
+            code: 'dark',
+            disabled: true,
+        },
+    ];
 
     return (
-        <div>Настройки</div>);
+        <div className={'settings-card'}>
+            <div className={'settings-card__selects'}>
+                <div className={'settings-card__selects__localization'}>
+                    <span className={'settings-card__selects__localization_span'}>Язык</span>
+                    <Select
+                        placeholder={'Выбор языка'}
+                        labelField={'language'}
+                        valueField={'code'}
+                        className={'settings__select'}
+                        searchBy={'language'}
+                        options={languageOptions}
+                        values={[languageOptions.find(opt => opt.code === 'ru')]}
+                        onChange={(value) => console.log(value)}/>
+                </div>
+
+                <div className={'settings-card__selects__theme'}>
+                    <span className={'settings-card__selects__theme_span'}>Тема</span>
+                    <Select
+                        placeholder={'Выбор темы'}
+                        labelField={'theme'}
+                        valueField={'code'}
+                        className={'settings__select'}
+                        searchBy={'theme'}
+                        options={themeOptions}
+                        values={[themeOptions.find(opt => opt.code === 'light')]}
+                        onChange={(value) => console.log(value)}/>
+                </div>
+            </div>
+            <button className={'settings-card__delete-account action-button stretch'}>Удалить аккаунт</button>
+
+
+        </div>
+    );
 
 }
 

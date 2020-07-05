@@ -1,15 +1,21 @@
 import React, {useEffect, useState} from 'react';
 
 import './Profile.scss'
-import {Link, Redirect, useHistory} from "react-router-dom";
-import ProfileForm from "./ProfileForm/ProfileForm";
+import {Link, Redirect} from "react-router-dom";
+import PasswordForm from "./PasswordForm/PasswordForm";
 import Settings from "./Settings/Settings";
 import Header from "../header";
+import Input from "../Input";
+import InputField from "../InputField/InputField";
+import {globalConsts} from "../../globalConsts";
 
 
 function Profile(props) {
-    const [type, setType] = useState('profile');
-    let reactHistory = useHistory();
+    const [type, setType] = useState('password');
+
+    const [name, setName] = useState({value:'Имя Фамилия', valid:true});
+    const [position, setPosition] = useState({value:'Должность',valid:true});
+
     const imagePicker = (e) => {
         let image = document.getElementById('upload').files[0];
         let reader = new FileReader();
@@ -26,54 +32,43 @@ function Profile(props) {
 
         <div className={"profile"}>
 
-            <Header buttons={[
-                {
-                    text: 'Заведения',
-                    onClick: () => {
-
-                    },
-                },
-                {
-                    text: 'Работники',
-                    onClick: () => {
-
-                    },
-                },
-                {
-                    text: 'Лендинг',
-                    onClick: () => {
-                        reactHistory.push('/landing')
-                    },
-                },
-                {
-                    text: 'Профиль',
-                    onClick: () => {
-                        reactHistory.push('/profile')
-                    },
-                },
-            ]}>
-            </Header>
-
             <div className={'profile__nav-container'}>
                 <div className={"profile__nav-container__img-picker"}>
                     <img id="image"
-                         src={'https://cdn0.iconfinder.com/data/icons/faces-general/100/female_old_flat-512.png'}></img>
+                         src={'https://cdn0.iconfinder.com/data/icons/faces-general/100/female_old_flat-512.png'}/>
                     <input
                         id="upload"
                         type="file"
                         accept="image/x-png,image/gif,image/jpeg, image/png"
-                        onChange={imagePicker}></input>
+                        onChange={imagePicker}/>
                 </div>
                 <div className={'profile__nav-container__user-info'}>
-                    <span className={'profile__nav-container__user-info_name'}> Имя Фамилия</span>
-                    <span className={'profile__nav-container__user-info_position'}> Должность</span>
+                    <Input type={'text'}
+                           value={name.value}
+                           onValidate={(val) => setName(
+                               name => {return {...name, valid: val}} )}
+                           onChange={(val) => setName(
+                               name => { return {...name, value: val} })}
+                           regexp={RegExp(globalConsts.validator.nameRegexp)}
+                           className = {`profile__nav-container__user-info_input ${name.valid?'':' invalid'}`}
+                           />
+                    <Input type={'text'}
+                           value={position.value}
+                           onValidate={(val) => setPosition(
+                               position => {return {...position, valid: val}} )}
+                           onChange={(val) => setPosition(
+                               position => { return {...position, value: val} })}
+                           regexp={RegExp(globalConsts.validator.nameRegexp)}
+                           className = {`profile__nav-container__user-info_input ${position.valid?'':' invalid'}`}
+                           />
+
                 </div>
                 <div className={'profile__nav-container__items'}>
-                    <div className={`profile__nav-container__items__item${type === 'profile' ? ' active' : ''}`}
+                    <div className={`profile__nav-container__items__item${type === 'password' ? ' active' : ''}`}
                          onClick={() => {
-                             setType('profile')
+                             setType('password')
                          }}>
-                        <span>Профиль</span>
+                        <span>Пароль</span>
                     </div>
                     <div className={`profile__nav-container__items__item${type === 'settings' ? ' active' : ''}`}
                          onClick={() => {
@@ -85,7 +80,7 @@ function Profile(props) {
 
             </div>
             <div className={'profile__container'}>
-                {type === 'profile' ? <ProfileForm className={"profile__container__form"} type={type}/> : null}
+                {type === 'password' ? <PasswordForm className={"profile__container__form"} type={type}/> : null}
                 {type === 'settings' ? <Settings/> : null}
             </div>
 

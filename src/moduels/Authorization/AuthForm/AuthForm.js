@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import "./AuthForm.scss"
+import Form from "../../Form/Form";
 import InputField from "../../InputField/InputField";
 import AnimationHandler from "../../../utils/AnimationHandler";
 import {Ajax} from "../../../utils/Ajax";
 import {globalConsts} from "../../../globalConsts";
+
 function AuthForm(props) {
 
 
@@ -20,6 +21,14 @@ function AuthForm(props) {
       validPassword: false,
       validRePassword: false,
   });
+    useEffect(() => {
+        setIsValid(props.type !== 'login'?
+            formValidation.validName && formValidation.validEmail  &&
+            formValidation.validPassword && formValidation.validRePassword &&
+            formValidation.password === formValidation.rePassword:
+            formValidation.validEmail && formValidation.validPassword);
+
+    });
 
   const register = [`${globalConsts.server.PATH_STAFF}/api/v1/staff`, 'POST',
       {
@@ -73,17 +82,10 @@ function AuthForm(props) {
       },false];
 
 
-  useEffect(() => {
-      setIsValid(props.type !== 'login'?
-          formValidation.validName && formValidation.validEmail  &&
-          formValidation.validPassword && formValidation.validRePassword &&
-          formValidation.password === formValidation.rePassword:
-          formValidation.validEmail && formValidation.validPassword);
 
-  });
 
   return (
-    <div className={"form"}>
+    <Form>
             <InputField
                 text={"Имя"}
                 patternmessage={"Минимум 2 символа.\nСпециальные символы запрещены"}
@@ -138,7 +140,7 @@ function AuthForm(props) {
             null
         }
 
-      <button id= {"auth-button"} onClick={ async () => {
+      <button onClick={ async () => {
           if (isValid) {
               if(props.type === 'reg'){
                   await Ajax(...register);
@@ -162,12 +164,10 @@ function AuthForm(props) {
               }
           }
         }}
-        className={isValid? 'auth-button-valid': 'auth-button-invalid'}>
+        className={isValid? 'submit-button-valid': 'submit-button-invalid'}>
         {props.type === "login" ? "Войти": "Регистрация"}
       </button>
-    </div>
+    </Form>
   );
 }
-
-
 export default AuthForm;
