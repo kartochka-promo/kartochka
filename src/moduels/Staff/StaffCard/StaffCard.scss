@@ -1,0 +1,30 @@
+.staff-card{
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  width: 250px;
+  height: 385px;
+  margin: 20px 50px;
+  transition: transform 0.25s ease-in-out;
+  align-items: center;
+  &:hover{
+    transform: scale(1.05);
+    transition: transform 0.25s ease-in-out;
+  }
+  &_img{
+    height: 175px;
+    width: 175px;
+    border-radius: 50%;
+  }
+
+  &_label{
+    cursor: pointer;
+    margin: 20px 0;
+    font-size: 1.5rem;
+  }
+
+  &_span{
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+}

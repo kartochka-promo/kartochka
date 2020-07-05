@@ -64,6 +64,7 @@ function Settings(props) {
                         values={[themeOptions.find(opt => opt.code === 'light')]}
                         onChange={(value) => console.log(value)}/>
                 </div>
+
             </div>
             <button className={'settings-card__delete-account action-button stretch'}>Удалить аккаунт</button>
 

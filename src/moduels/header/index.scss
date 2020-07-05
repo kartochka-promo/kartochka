@@ -4,6 +4,7 @@
   width: 90%;
   margin-top: 20px;
   justify-content: space-between;
+  align-items: center;
   //position: fixed; //надо подумать над положением хедера и вьюшек
   z-index: 20;
   top: 0;
@@ -28,6 +29,8 @@
     font-size: 30px;
     outline: none;
     cursor: pointer;
+    height: inherit;
+    margin: 0;
 
   }
 }

@@ -1,0 +1,43 @@
+.cafe-field{
+  display: flex;
+  flex-direction: column;
+
+
+  &__staff-list{
+    display: flex;
+    flex-wrap: wrap;
+
+    &__add-button{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      width: 250px;
+      height: 385px;
+      margin: 20px 50px;
+      box-shadow: 0px 0px 20px rgba(0,0,0,0.15);
+      transition: transform 0.25s ease-in-out;
+      background: #5e5e5e;
+      opacity: 0.1;
+      &:hover{
+        transform: scale(1.05);
+        transition: transform 0.25s ease-in-out;
+      }
+
+      &__circle{
+        height: 150px;
+        width: 150px;
+        background: #FFFFFF;
+        border-radius: 50%;
+        box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+        img{
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+
+  }
+
+}

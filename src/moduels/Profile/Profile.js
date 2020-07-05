@@ -1,20 +1,16 @@
 import React, {useEffect, useState} from 'react';
-
 import './Profile.scss'
-import {Link, Redirect} from "react-router-dom";
 import PasswordForm from "./PasswordForm/PasswordForm";
 import Settings from "./Settings/Settings";
-import Header from "../header";
 import Input from "../Input";
-import InputField from "../InputField/InputField";
 import {globalConsts} from "../../globalConsts";
 
 
 function Profile(props) {
     const [type, setType] = useState('password');
 
-    const [name, setName] = useState({value:'Имя Фамилия', valid:true});
-    const [position, setPosition] = useState({value:'Должность',valid:true});
+    const [name, setName] = useState({value: 'Имя Фамилия', valid: true});
+    const [position, setPosition] = useState({value: 'Должность', valid: true});
 
     const imagePicker = (e) => {
         let image = document.getElementById('upload').files[0];
@@ -29,9 +25,7 @@ function Profile(props) {
          */
     }
     return (
-
         <div className={"profile"}>
-
             <div className={'profile__nav-container'}>
                 <div className={"profile__nav-container__img-picker"}>
                     <img id="image"
@@ -46,21 +40,29 @@ function Profile(props) {
                     <Input type={'text'}
                            value={name.value}
                            onValidate={(val) => setName(
-                               name => {return {...name, valid: val}} )}
+                               name => {
+                                   return {...name, valid: val}
+                               })}
                            onChange={(val) => setName(
-                               name => { return {...name, value: val} })}
+                               name => {
+                                   return {...name, value: val}
+                               })}
                            regexp={RegExp(globalConsts.validator.nameRegexp)}
-                           className = {`profile__nav-container__user-info_input ${name.valid?'':' invalid'}`}
-                           />
+                           className={`profile__nav-container__user-info_input ${name.valid ? '' : ' invalid'}`}
+                    />
                     <Input type={'text'}
                            value={position.value}
                            onValidate={(val) => setPosition(
-                               position => {return {...position, valid: val}} )}
+                               position => {
+                                   return {...position, valid: val}
+                               })}
                            onChange={(val) => setPosition(
-                               position => { return {...position, value: val} })}
+                               position => {
+                                   return {...position, value: val}
+                               })}
                            regexp={RegExp(globalConsts.validator.nameRegexp)}
-                           className = {`profile__nav-container__user-info_input ${position.valid?'':' invalid'}`}
-                           />
+                           className={`profile__nav-container__user-info_input ${position.valid ? '' : ' invalid'}`}
+                    />
 
                 </div>
                 <div className={'profile__nav-container__items'}>
