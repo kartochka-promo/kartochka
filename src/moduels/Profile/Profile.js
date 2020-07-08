@@ -39,6 +39,7 @@ function Profile(props) {
                 <div className={'profile__nav-container__user-info'}>
                     <Input type={'text'}
                            value={name.value}
+                           onInput = {()=>{alert('onInput')}}
                            onValidate={(val) => setName(
                                name => {
                                    return {...name, valid: val}

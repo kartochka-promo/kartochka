@@ -1,12 +1,15 @@
 import React from 'react';
 import './StaffCard.scss'
 import {useHistory} from "react-router-dom";
-
+import {customHistory} from "../../../index";
 function StaffCard(props) {
     let reactHistory = useHistory();
+    console.log(`staff card hidden ${props.hidden}`)
     return (
-        <div className={'staff-card'} onClick={() => {
-            reactHistory.push(`/staff/${props.id}`)
+        <div className={`staff-card ${props.hidden !== undefined ?(props.hidden?'hidden':'selected'):''}`} onClick={() => {
+            // reactHistory.push(`/staff/${props.id}`);
+            customHistory.push(`/staff/${props.id}`);
+            props.setSelected(Number(props.id));
         }}>
             <img className={'staff-card_img'} src={props.image}/>
             <label className={'staff-card_label'}>{props.name}</label>
@@ -14,6 +17,5 @@ function StaffCard(props) {
         </div>
     );
 }
-
 
 export default StaffCard;

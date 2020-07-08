@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import CafeField from "./CafeField/CafeField";
-import StaffPage from "./StaffPage/StaffPage";
+import './Staff.scss'
 import {data} from "./TestData";
+import {customHistory} from "../../index";
+import backArrow from '../../img/back.svg'
+import {useHistory} from "react-router-dom";
 
 const getStaffById = (id) => {
     for (let [, cafe] of Object.entries(data)) {
@@ -16,13 +19,24 @@ const getStaffById = (id) => {
 
 function Staff(props) {
     const {id} = useParams();
-
+    const [selected, setSelected] = useState(id);
+    let reactHistory = useHistory();
+    console.log(`staff ${id}`)
     return (
+
         <div className={'staff'}>
-            {id ? <StaffPage staff={getStaffById(id)}/> :
-                data.map((el) =>
-                    <CafeField cafeName={el.cafeName} cafeId={el.cafeId} staffList={el.staffList}/>)
-            }
+            <div className={`staff__button ${selected >= 0 ? '' : 'hidden'}`}  onClick={() => {
+                // reactHistory.push('/staff');
+                customHistory.push('/staff');
+                setSelected(undefined)
+            }}>
+            <img className={`staff__button_img`} src={backArrow}/>
+
+                </div>
+            {data.map((el) =>
+                <CafeField setSelected={setSelected} cafeName={el.cafeName} cafeId={el.cafeId} staffList={el.staffList}
+                           selected={selected}/>
+            )}
         </div>
     );
 }
