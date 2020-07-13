@@ -43,8 +43,8 @@
 .submit-button-invalid, .submit-button-valid {
   background-color: $main-colour;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
-  height: 50px;
-  font-size: 1rem;
+  height: 64px;
+  width: 100%;
   color: white;
   cursor: pointer;
   transition: background-color 0.25s ease-in-out;

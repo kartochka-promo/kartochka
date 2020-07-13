@@ -164,7 +164,7 @@ function AuthForm(props) {
               }
           }
         }}
-        className={isValid? 'submit-button-valid': 'submit-button-invalid'}>
+        className={`action-button submit-button-${isValid? 'valid': 'invalid'}`}>
         {props.type === "login" ? "Войти": "Регистрация"}
       </button>
     </Form>

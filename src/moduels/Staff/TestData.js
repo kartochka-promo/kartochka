@@ -26,7 +26,7 @@ export const data = [
                 image: 'https://cdn0.iconfinder.com/data/icons/faces-general/100/female_old_flat-512.png',
                 name: 'Имя3',
                 position: 'Должность3',
-            }
+            },
         ]
     },
     {

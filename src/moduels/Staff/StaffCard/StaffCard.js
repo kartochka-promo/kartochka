@@ -7,9 +7,9 @@ function StaffCard(props) {
     console.log(`staff card hidden ${props.hidden}`)
     return (
         <div className={`staff-card ${props.hidden !== undefined ?(props.hidden?'hidden':'selected'):''}`} onClick={() => {
-            // reactHistory.push(`/staff/${props.id}`);
-            customHistory.push(`/staff/${props.id}`);
-            props.setSelected(Number(props.id));
+            reactHistory.push(`/staff/${props.id}`);
+            // props.setSelected(Number(props.id));
+            // customHistory.push(`/staff/${props.id}`);
         }}>
             <img className={'staff-card_img'} src={props.image}/>
             <label className={'staff-card_label'}>{props.name}</label>

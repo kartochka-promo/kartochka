@@ -6,6 +6,7 @@ import {data} from "./TestData";
 import {customHistory} from "../../index";
 import backArrow from '../../img/back.svg'
 import {useHistory} from "react-router-dom";
+import Actions from "./Actions/Actions";
 
 const getStaffById = (id) => {
     for (let [, cafe] of Object.entries(data)) {
@@ -26,17 +27,18 @@ function Staff(props) {
 
         <div className={'staff'}>
             <div className={`staff__button ${selected >= 0 ? '' : 'hidden'}`}  onClick={() => {
-                // reactHistory.push('/staff');
-                customHistory.push('/staff');
-                setSelected(undefined)
+                reactHistory.push('/staff');
+                // setSelected(undefined);
+                // customHistory.push('/staff');
             }}>
             <img className={`staff__button_img`} src={backArrow}/>
-
                 </div>
             {data.map((el) =>
                 <CafeField setSelected={setSelected} cafeName={el.cafeName} cafeId={el.cafeId} staffList={el.staffList}
                            selected={selected}/>
             )}
+
+            {selected >= 0? <Actions/> : null}
         </div>
     );
 }

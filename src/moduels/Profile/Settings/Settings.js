@@ -66,7 +66,9 @@ function Settings(props) {
                 </div>
 
             </div>
-            <button className={'settings-card__delete-account action-button stretch'}>Удалить аккаунт</button>
+            <button
+                onClick={()=>alert('Удаление аккаунта')}
+                className={'settings-card__delete-account action-button stretch '}>Удалить аккаунт</button>
 
 
         </div>

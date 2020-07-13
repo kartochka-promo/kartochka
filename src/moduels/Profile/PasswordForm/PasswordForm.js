@@ -25,7 +25,7 @@ function PasswordForm(props) {
     });
 
     return (
-        <div className={"form"}>
+        <div id = {'password-form'}className={"form"}>
             <InputField
                 text={"Старый пароль"}
                 onChange={(val) => setFormValues(
@@ -63,7 +63,9 @@ function PasswordForm(props) {
                     // await Ajax();
                     alert('redact')
                 } else{
-                    let inputs = document.getElementsByClassName('input-field');
+                    let passwordInputs = document.getElementById('password-form');
+
+                    let inputs = passwordInputs.getElementsByClassName('input-field');
                     const time = 820;
                     let i = 0;
                     for(let [,value] of Object.entries(formValidation)){
@@ -77,7 +79,7 @@ function PasswordForm(props) {
                     }
                 }
             }}
-                    className={isValid? 'submit-button-valid': 'submit-button-invalid'}>
+                    className={`action-button submit-button-${isValid? 'valid': 'invalid'}`}>
                 Сменить пароль
             </button>
         </div>

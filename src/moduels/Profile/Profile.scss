@@ -1,98 +1,13 @@
 .profile{
   display: flex;
-  //height: 100%;
-  //width:100%;
-  margin-top: 5%;
-  &__nav-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left:5%;
-    max-width: 350px;
-
-    &__img-picker{
-      position: relative;
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      margin: 0 auto;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.25s ease-in-out;
-      &:hover{
-        transition: transform 0.25s ease-in-out;
-        transform: scale(1.05);
-      }
-      img{
-        position: absolute;
-        width:100%;
-        height:100%;
-        cursor: pointer;
-
-      }
-      input{
-        position: absolute;
-        width:100%;
-        height:100%;
-        opacity: 0;
-        cursor: pointer;
-      }
-
-    }
-
-    &__user-info{
-      cursor: default;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 30px;
-      -webkit-appearance: none;
-
-     &_input{
-       position: relative;
-       margin: 5px auto;
-       -webkit-appearance: none;
-       background: none;
-       border: none;
-       border-radius: 0;
-       outline:none;
-       text-align: center;
-       font-size: 2rem;
-       width: fit-content;
-       min-width: 50px;
-
-       &.invalid{
-         border: 2px solid red;
-       }
-     }
-    }
-
-
-    &__items{
-      display: flex;
-      flex-direction: column;
-      font-size: 1.5rem;
-      &__item{
-        margin: 15px auto;
-        width: 100%;
-        opacity: 0.5;
-        cursor: pointer;
-        transition: transform 0.25s ease-in-out;
-        &:hover{
-          transform: scale(1.05);
-          transition: transform 0.25s ease-in-out;
-        }
-        &.active{
-          opacity: 1;
-        }
-
-      }
-    }
-  }
-  &__container{
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 50px;
+  &__user{
     margin: 0 auto;
-    display: flex;
-    justify-content: flex-start;
+    height: 100%;
+  }
+  &__settings{
+    margin: 0 auto;
   }
 }
-
