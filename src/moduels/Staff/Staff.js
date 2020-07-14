@@ -8,16 +8,6 @@ import backArrow from '../../img/back.svg'
 import {useHistory} from "react-router-dom";
 import Actions from "./Actions/Actions";
 
-const getStaffById = (id) => {
-    for (let [, cafe] of Object.entries(data)) {
-        for (let staff of cafe.staffList) {
-            if (Number(staff.id) === Number(id)) {
-                return staff
-            }
-        }
-    }
-}
-
 function Staff(props) {
     const {id} = useParams();
     const [selected, setSelected] = useState(id);
@@ -27,6 +17,7 @@ function Staff(props) {
 
         <div className={'staff'}>
             <div className={`staff__button ${selected >= 0 ? '' : 'hidden'}`}  onClick={() => {
+                window.scrollTo({top: 0});
                 reactHistory.push('/staff');
                 // setSelected(undefined);
                 // customHistory.push('/staff');
@@ -38,7 +29,19 @@ function Staff(props) {
                            selected={selected}/>
             )}
 
-            {selected >= 0? <Actions/> : null}
+            {selected >= 0?
+                <div className={'actions-container'}>
+                    <div className={'scroll'}>
+                        <div className={"scroll-indicator"}>
+                            <div className={"scroll-indicator-inner"}/>
+                        </div>
+                    </div>
+                    <h1>Активность</h1>
+                    <Actions/>
+
+                    <button className={'action-button fire-staff'}>Уволить</button>
+                </div>
+                : null}
         </div>
     );
 }

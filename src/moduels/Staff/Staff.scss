@@ -1,7 +1,5 @@
 @import "./src/styles/colours";
 .staff{
-  //overflow: scroll;
-  //height: 100vh;
 
   &__button{
     position: fixed;
@@ -19,4 +17,69 @@
 
     }
   }
+}
+
+.actions-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0 0 40px 0;
+
+  .scroll{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+
+    .scroll-indicator{
+      position: absolute;
+      top:0;
+      width: 20px;
+      height: 40px;
+      border-radius: 20px;
+      border: 2px solid #5e5e5e;
+
+      @keyframes scroll-indicator-inner-animation {
+        0%{
+          top: 5px;
+          height: 10px;
+        }
+        25%{
+          top: 20px;
+        }
+        50%{
+          height: 15px;
+        }
+        75%{
+          height: 10px;
+        }
+        100%{
+          top: 5px;
+        }
+      }
+
+      .scroll-indicator-inner{
+        position: absolute;
+        top: 5px;
+        left: calc(50% - 2px);
+        animation: scroll-indicator-inner-animation 2s infinite ease-in-out;
+        width: 4px;
+        height: 10px;
+        background: #5e5e5e;
+        border-radius: 4px;
+      }
+    }
+  }
+  h1{
+    margin: 70px auto 35px auto;
+    text-align: center;
+  }
+  .fire-staff{
+    width: 300px;
+    height: 64px ;
+    margin: 0 auto;
+    align-self: center;
+  }
+
 }

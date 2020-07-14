@@ -135,32 +135,35 @@ function Actions(props) {
     }
 
     return (
-        <div className="staff-actions-container">
-            <div className="staff-actions-container__date">
-                <div className="staff-actions-container__date__button-prev">
+        <div className="staff-actions">
+            <div className="staff-actions__date">
+                <div className="staff-actions__date__button-prev">
                     <img src={arrowTop}/>
                 </div>
-                <div className="staff-actions-container__date__start-date-container">
-                    <span className="staff-actions-container__date__start-date-container_span">
+                <div className="staff-actions__date__start-date-container">
+                    <span className="staff-actions__date__start-date-container_span">
                         {context.dateStart.split('.')[0]}</span>
-                    <span className="staff-actions-container__date__start-date-container_span">
+                    <span className="staff-actions__date__start-date-container_span">
                         {context.dateStart.split('.')[1]}</span>
                 </div>
-                <div className="staff-actions-container__date__strip"/>
-                <div className="staff-actions-container__date__end-date-container">
-                    <span className="staff-actions-container__date__end-date-container_span">
-                         {context.dateEnd.split('.')[0]}
+                <div className="staff-actions__date__strip"/>
+                <div className="staff-actions__date__end-date-container">
+                    <span className="staff-actions__date__end-date-container_span">
+                        {context.dateEnd.split('.')[0]}
                     </span>
-                    <span className="staff-actions-container__date__end-date-container_span">
+                    <span className="staff-actions__date__end-date-container_span">
                          {context.dateEnd.split('.')[1]}
                     </span>
                 </div>
-                <div className="staff-actions-container__date__button-next">
+                <div className="staff-actions__date__button-next">
                     <img src={arrowButton}/>
                 </div>
+
+
             </div>
 
-            <div className="staff-actions-container__actions">
+            <div className="staff-actions__actions">
+
                 {dayCells.map((dayCell)=>{
                     return (
                         <>
