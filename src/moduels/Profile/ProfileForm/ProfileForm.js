@@ -1,19 +1,53 @@
 import React, {useEffect, useState} from 'react';
-import AnimationHandler from "../../../utils/AnimationHandler";
-import {Ajax} from "../../../utils/Ajax";
 import {globalConsts} from "../../../globalConsts";
-import Input from "../../Input";
 import './ProfileForm.scss'
 import InputField from "../../InputField/InputField";
-import Form from "../../Form/Form";
+import {useStore} from "react-redux";
 
 function ProfileForm(props) {
 
     const [isValid, setIsValid] = useState(false);
 
+    const store = useStore();
+
+    function select(state) {
+        return {
+            name: state.name,
+            position: state.position
+        }
+    }
+
+    let currentValue;
+    function handleChanges() {
+        let previousValue = currentValue
+        currentValue = select(store.getState())
+            if(!previousValue || currentValue.name !== previousValue.name){
+                setFormValues(name => {
+                    return {...name, name: currentValue.name}
+                })
+                setFormValidation(
+                    name => {
+                        return {...name, validName: true}
+                    })
+
+            }
+            if(!previousValue || currentValue.position !== previousValue.position){
+                setFormValues(position => {
+                    return {...position, position: currentValue.position}
+                })
+                setFormValidation(position => {
+                        return {...position, validPosition: true}
+                    })
+            }
+
+
+    }
+
+    const unsubscribe = store.subscribe(handleChanges)
+
     const [formValues, setFormValues] = useState({
-        name: 'Имя',
-        position: 'Должность',
+        name: store.getState().name,
+        position: store.getState().position,
     });
     const [formValidation, setFormValidation] = useState({
         validName: true,
@@ -77,12 +111,12 @@ function ProfileForm(props) {
                     patternmessage={"Минимум 2 символа.\nСпециальные символы запрещены"}
                     type= {"text"}
                     onValidate={(val) => setFormValidation(
-                        name => {
-                            return {...name, validPosition: val}
+                        position => {
+                            return {...position, validPosition: val}
                         })}
                     onChange={(val) => setFormValues(
-                        name => {
-                            return {...name, position: val}
+                        position => {
+                            return {...position, position: val}
                         })}
                     regexp={RegExp(globalConsts.validator.nameRegexp)}
                 />

@@ -16,7 +16,7 @@ function InputField(props) {
     }
   }
   return(
-      <div className={`input-field${props.hidden?'hidden':''}`} >
+      <div className={`input-field${props.hidden?' hidden':''}`} >
         {props.text?<label>{props.text} </label>:null}
         <div className={"input-field__container"}>
           <input value={props.value} className={`input-field__container_input ${isValid? 'correct': ''}`} type = {props.type} onChange={onChange} />

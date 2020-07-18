@@ -1,12 +1,9 @@
-
-
 export async function Ajax(route, method, body, callback,isFormData) {
     let reqBody = {
         method: method,
         mode: 'cors',
         credentials: 'include',
     };
-
     if(method !== 'GET' && method !== 'HEAD'){
         if(isFormData){
             const formData = new FormData();
@@ -17,7 +14,6 @@ export async function Ajax(route, method, body, callback,isFormData) {
             reqBody['body'] = JSON.stringify(body);
         }
     }
-
     const myCsrf = sessionStorage.getItem('Csrf');
     if(myCsrf){
         reqBody.headers = {'X-CSRF-TOKEN': myCsrf};
@@ -39,5 +35,6 @@ export async function Ajax(route, method, body, callback,isFormData) {
     } catch (exception) {
         console.log('Ajax Error:', exception.message);
     }
+    console.log('response in ajax', responseJson)
     callback(responseJson);
 }

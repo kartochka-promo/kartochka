@@ -60,7 +60,7 @@ function PasswordForm(props) {
 
             <button onClick={ async () => {
                 if (isValid) {
-                    // await Ajax();
+
                     alert('redact')
                 } else{
                     let passwordInputs = document.getElementById('password-form');

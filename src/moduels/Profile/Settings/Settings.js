@@ -67,7 +67,9 @@ function Settings(props) {
 
             </div>
             <button
-                onClick={()=>alert('Удаление аккаунта')}
+                onClick={async ()=>{
+                    await Ajax('https://s-soboy.com/api/v1/cafe/get_all?since=0&limit=100', 'GET', {}, (response)=>console.log(response),true);
+                }}
                 className={'settings-card__delete-account action-button stretch '}>Удалить аккаунт</button>
 
 

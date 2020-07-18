@@ -7,12 +7,14 @@ import {useParams} from "react-router";
 function Authorization(props) {
     const [type, setType] = useState(props.type);
     const {uuid, position} = useParams();
+    const redirect = props.redirect? `/${props.redirect}`: '/profile';
     return (
         <div className={"authorization"}>
             <div className={"authorization__title"}>
                 <h1>{(type === 'login') ? 'Авторизация' : 'Регистрация'}</h1>
             </div>
             <AuthForm
+                redirect = {redirect}
                 uuid={uuid}
                 position={position}
                 className={"authorization__form"}
