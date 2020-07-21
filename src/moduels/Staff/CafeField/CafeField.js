@@ -1,10 +1,11 @@
 import React from 'react';
+import ReactDOM from 'react'
 import './CafeField.scss'
 import StaffCard from "../StaffCard/StaffCard";
 import plus from '../../../img/plus.svg'
+import ModalWindow from "../../Modal/Modal";
 
 function CafeField(props) {
-    console.log(`cafe field selected ${props.selected}`)
     return (
         <div className={'cafe-field'}>
             <h1 className={`cafe-field_h1 ${props.selected>=0 ? 'hidden': ''}`}>{props.cafeName}</h1>
@@ -20,8 +21,13 @@ function CafeField(props) {
                             {props.selected !== undefined ?(Number(props.selected) >=0 ? Number(el.id) !== Number(props.selected): undefined)
                                 :undefined}/>)}
 
-                <div className={`cafe-field__staff-list__add-button ${props.selected>=0? 'hidden': ''}`} onClick={
-                    () => alert(`Добавляем в кафе ${props.cafeId}`)}>
+                <div className={`cafe-field__staff-list__add-button ${props.selected>=0? 'hidden': ''}`}
+
+                     onClick={()=>{
+                         props.toggle();
+                         props.setSelectedCafe(props.cafeId)
+                     }}>
+
                     <div className={'cafe-field__staff-list__add-button__circle'}>
                         <img src={plus}/>
                     </div>

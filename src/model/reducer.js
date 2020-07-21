@@ -3,12 +3,69 @@ import Immutable from 'seamless-immutable';
 
 let sampleState = Immutable({
   isAuthorized: false,
+  id: undefined,
   name: '',
   email:'',
   position: '',
   isOwner: '',
   cafes: [],
-  staff: [],
+  staff: [
+    // {
+    //   cafeName: 'Кафе1',
+    //   cafeId: 1,
+    //   staffList: [
+    //     {
+    //       id:0,
+    //       image: 'https://cdn0.iconfinder.com/data/icons/faces-general/100/female_old_flat-512.png',
+    //       name: 'Имя0',
+    //       position: 'Должность0',
+    //     },
+    //     {
+    //       id:1,
+    //       image: 'https://cdn0.iconfinder.com/data/icons/faces-general/100/female_old_flat-512.png',
+    //       name: 'Имя1',
+    //       position: 'Должность1',
+    //     },
+    //     {
+    //       id:2,
+    //       image: 'https://cdn0.iconfinder.com/data/icons/faces-general/100/female_old_flat-512.png',
+    //       name: 'Имя2',
+    //       position: 'Должность2',
+    //     },
+    //     {
+    //       id:3,
+    //       image: 'https://cdn0.iconfinder.com/data/icons/faces-general/100/female_old_flat-512.png',
+    //       name: 'Имя3',
+    //       position: 'Должность3',
+    //     },
+    //   ]
+    // },
+    // {
+    //   cafeName: 'Кафе2',
+    //   cafeId: 2,
+    //   staffList: [
+    //     {
+    //       id:4,
+    //       image: 'https://cdn0.iconfinder.com/data/icons/faces-general/100/female_old_flat-512.png',
+    //       name: 'Имя4',
+    //       position: 'Должность4',
+    //     },
+    //     {
+    //       id:5,
+    //       image: 'https://cdn0.iconfinder.com/data/icons/faces-general/100/female_old_flat-512.png',
+    //       name: 'Имя5',
+    //       position: 'Должность5',
+    //     },
+    //     {
+    //       id:6,
+    //       image: 'https://cdn0.iconfinder.com/data/icons/faces-general/100/female_old_flat-512.png',
+    //       name: 'Имя6',
+    //       position: 'Должность6',
+    //     }
+    //   ]
+    // },
+
+  ],
 
 })
 
@@ -18,6 +75,7 @@ function reducer(state= sampleState, action = {}){
       console.log('auth ',action);
       return state.merge({
         isAuthorized: true,
+        id: action.user.id,
         name: action.user.name,
         email: action.user.email,
         position: action.user.position,
@@ -27,6 +85,7 @@ function reducer(state= sampleState, action = {}){
       console.log('reg ',action);
       return state.merge({
         isAuthorized: true,
+        id: action.user.id,
         name: action.user.name,
         email: action.user.email,
         position: action.user.position,
@@ -37,6 +96,7 @@ function reducer(state= sampleState, action = {}){
       console.log('get current user ',action);
       return state.merge({
         isAuthorized: true,
+        id: action.user.id,
         name: action.user.name,
         email: action.user.email,
         position: action.user.position,
@@ -55,6 +115,7 @@ function reducer(state= sampleState, action = {}){
 
       break;
     case types.GET_STAFF:
+      console.log('reducer get_staff')
       return state.merge({
       staff: action.user.staff
       })

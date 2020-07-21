@@ -19,13 +19,14 @@ export default function CheckAuth(props) {
         'GET',
         {},
         (response) => {
-            console.log('ajax get staff', props.component);
+            console.log('ajax get current staff', props.component);
             if (response.errors === null) {
                 store.dispatch(getCurrentUser(response))
             } else {
                 reactHistory.push('/auth')
                 throw response.errors;
             }
+
         },
         false);
     return  <Component {...componentProps}/>
