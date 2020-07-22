@@ -4,6 +4,7 @@ import Immutable from 'seamless-immutable';
 let sampleState = Immutable({
   isAuthorized: false,
   id: undefined,
+  photo: undefined,
   name: '',
   email:'',
   position: '',
@@ -76,6 +77,7 @@ function reducer(state= sampleState, action = {}){
       return state.merge({
         isAuthorized: true,
         id: action.user.id,
+        photo: action.user.photo,
         name: action.user.name,
         email: action.user.email,
         position: action.user.position,
@@ -86,6 +88,7 @@ function reducer(state= sampleState, action = {}){
       return state.merge({
         isAuthorized: true,
         id: action.user.id,
+        photo: action.user.photo,
         name: action.user.name,
         email: action.user.email,
         position: action.user.position,
@@ -97,6 +100,7 @@ function reducer(state= sampleState, action = {}){
       return state.merge({
         isAuthorized: true,
         id: action.user.id,
+        photo: action.user.photo,
         name: action.user.name,
         email: action.user.email,
         position: action.user.position,

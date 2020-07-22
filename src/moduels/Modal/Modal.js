@@ -15,6 +15,7 @@ const Modal = (props) => props.isShowing ? ReactDOM.createPortal(
             </div>
         </div>
     </React.Fragment>, document.body
+
 ) : null;
 
 export default Modal;

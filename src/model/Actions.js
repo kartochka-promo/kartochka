@@ -5,6 +5,7 @@ export function registerOwner(response) {
         type: types.REGISTRATION,
         user: {
             id: response.data.id,
+            photo: response.data.photo,
             name: response.data.name,
             email: response.data.email,
             position: response.data.Position,
@@ -18,6 +19,7 @@ export function Authorization(response) {
         type: types.AUTHORIZATION,
         user: {
             id: response.data.id,
+            photo: response.data.photo,
             name: response.data.name,
             email: response.data.email,
             position: response.data.Position,
@@ -33,6 +35,7 @@ export function registerStaff(response) {
         type: types.REGISTRATION,
         user: {
             id: response.data.id,
+            photo: response.data.photo,
             name: response.data.name,
             email: response.data.email,
             position: response.data.Position,
@@ -43,10 +46,12 @@ export function registerStaff(response) {
 }
 
 export function getCurrentUser(response) {
+    console.log('responseeee',response.data.photo)
     return {
         type: types.GET_CURRENT_USER,
         user: {
             id: response.data.id,
+            photo: response.data.photo,
             name: response.data.name,
             email: response.data.email,
             position: response.data.Position,

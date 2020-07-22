@@ -1,4 +1,5 @@
-export async function Ajax(route, method, body, callback,isFormData) {
+export async function Ajax(route, method, body, callback,isFormData,files) {
+    console.log('test files', files)
     let reqBody = {
         method: method,
         mode: 'cors',
@@ -9,7 +10,15 @@ export async function Ajax(route, method, body, callback,isFormData) {
             const formData = new FormData();
             let jsonData = JSON.stringify(body);
             formData.append('jsonData',jsonData);
+            if(files){
+                console.log('has files')
+                for(const [key, value] of Object.entries(files)){
+                    console.log('has files', key, value)
+                    formData.append(key, value);
+                }
+            }
             reqBody['body'] = formData;
+
         } else{
             reqBody['body'] = JSON.stringify(body);
         }
